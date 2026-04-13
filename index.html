@@ -3,79 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Dashboard</title>
+    <title>CryptoHub Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <div class="header-content">
-            <h1>📊 Dashboard</h1>
-            <button id="refreshBtn" class="refresh-btn">🔄 Refresh Data</button>
-        </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Loading Indicator -->
-        <div id="loadingMessage" class="loading-message" style="display: none;">
-            ⏳ Loading data...
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">📊</span>
+            <span class="logo-text">CryptoHub</span>
         </div>
 
-        <!-- Cards Container -->
-        <div class="cards-grid">
-            
-            <!-- Card 1: Bitcoin Price -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Bitcoin Price</h2>
-                </div>
-                <div class="card-body">
-                    <div class="card-value" id="bitcoinPrice">-</div>
-                    <div class="card-description" id="bitcoinDesc">Fetching data...</div>
-                </div>
-            </div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">📈</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">💰</span>
+                <span class="nav-label">Portfolio</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Analytics</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </a>
+        </nav>
 
-            <!-- Card 2: Ethereum Price -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Ethereum Price</h2>
-                </div>
-                <div class="card-body">
-                    <div class="card-value" id="ethereumPrice">-</div>
-                    <div class="card-description" id="ethereumDesc">Fetching data...</div>
-                </div>
-            </div>
-
-            <!-- Card 3: Random User -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Random User</h2>
-                </div>
-                <div class="card-body">
-                    <div class="card-value" id="userName">-</div>
-                    <div class="card-description" id="userEmail">Fetching data...</div>
-                </div>
-            </div>
-
-            <!-- Card 4: Fun Fact -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Fun Fact</h2>
-                </div>
-                <div class="card-body">
-                    <div class="card-value fact-icon">💡</div>
-                    <div class="card-description" id="factText">Fetching data...</div>
-                </div>
-            </div>
-
+        <div class="sidebar-footer">
+            <a href="#" class="nav-item">
+                <span class="nav-icon">❓</span>
+                <span class="nav-label">Help</span>
+            </a>
         </div>
-    </main>
+    </aside>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Interactive Dashboard | Built with HTML, CSS & JavaScript</p>
-    </footer>
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-wrapper">
+
+        <!-- ===== TOP NAVIGATION ===== -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="searchInput"
+                        placeholder="Search cryptocurrencies..."
+                    >
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <button id="refreshBtn" class="btn-refresh">
+                    <span>🔄</span>
+                    <span>Refresh</span>
+                </button>
+                <div class="profile">
+                    <div class="avatar">👤</div>
+                    <div class="profile-info">
+                        <div class="profile-name">John Doe</div>
+                        <div class="profile-role">User</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== PAGE CONTENT ===== -->
+        <main class="content">
+
+            <!-- ===== HEADER SECTION ===== -->
+            <section class="header-section">
+                <div class="header-title">
+                    <h1>Portfolio Overview</h1>
+                    <p>Real-time cryptocurrency market data</p>
+                </div>
+
+                <div id="loadingMessage" class="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <span>Loading data...</span>
+                </div>
+            </section>
+
+            <!-- ===== STATS CARDS ===== -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Cryptocurrencies</div>
+                    <div class="stat-value" id="totalCryptos">4</div>
+                    <div class="stat-change positive">↑ Active</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Last Updated</div>
+                    <div class="stat-value" id="lastUpdated">-</div>
+                    <div class="stat-change">Just now</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Market Status</div>
+                    <div class="stat-value" id="marketStatus">Live</div>
+                    <div class="stat-change positive">● Online</div>
+                </div>
+            </section>
+
+            <!-- ===== CRYPTO CARDS GRID ===== -->
+            <section class="crypto-section">
+                <div class="section-header">
+                    <h2>Cryptocurrency Prices</h2>
+                    <span class="section-subtitle">Updated in real-time</span>
+                </div>
+
+                <div id="cryptoCardsContainer" class="crypto-grid">
+                    <!-- Crypto cards will be dynamically created here -->
+                    <div class="loading-skeleton"></div>
+                    <div class="loading-skeleton"></div>
+                    <div class="loading-skeleton"></div>
+                    <div class="loading-skeleton"></div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
 
     <script src="script.js"></script>
 </body>
